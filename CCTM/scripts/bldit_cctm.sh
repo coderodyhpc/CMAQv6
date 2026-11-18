@@ -478,7 +478,7 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
  echo                                                              >> $Cfile
  echo "lib_4       ioapi/lib;"                                     >> $Cfile
  echo                                                              >> $Cfile
- text="$quote$CPP_FLAGS $PAR $SENS $PIO $cpp_depmod $POT $STX1 $STX2$quote;"
+ text="$quote$CPP_FLAGS $PAR $SENS $PIO $STX1 $STX2$quote;"
  echo "cpp_flags   $text"                                          >> $Cfile
  echo                                                              >> $Cfile
  echo "f_compiler  $FC;"                                           >> $Cfile
@@ -577,9 +577,14 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
  echo "Module ${ModHdiff};"                                        >> $Cfile
  echo                                                              >> $Cfile
 
- text="acm2"
+ text="acm2_m3dry or acm2_stage"
  echo "// options are" $text                                       >> $Cfile
  echo "Module ${ModVdiff};"                                        >> $Cfile
+ echo                                                              >> $Cfile
+
+ text="m3dry or stage"
+ echo "// options are" $text                                       >> $Cfile
+ echo "Module ${ModDepv};"                                        >> $Cfile
  echo                                                              >> $Cfile
 
  text="emis"
