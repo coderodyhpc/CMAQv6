@@ -1046,18 +1046,12 @@
       Character( FLD_LEN ) :: record
       Character( 1 )       :: tab = char( 9 )
 
-      if (model_configuration == wrf_cmaq) then
-         Write( lfn, *)
-         Write( lfn, *) 'LIBTARGET    = cmaq'
-         Write( lfn, *) 'TARGETDIR    = ./'
-         Write( lfn, *) '$(LIBTARGET) : $(OBJS)'
-         Write( lfn, '(a,a, "$(AR) $(ARFLAGS) ../main/libcmaqlib.a $(OBJS)"/)' ) tab, tab
-         Write( lfn, *) 'include ../configure.wrf'
-      else if (model_configuration == mpas_cmaq) then
-         Write( lfn, *)
-         Write( lfn, *) 'cmaq: $(OBJS)'
-         Write( lfn, '(a,a, "ar -ru libcmaq.a $(OBJS)"/)' ) tab, tab
-      end if
+      Write( lfn, *)
+      Write( lfn, *) 'LIBTARGET    = cmaq'
+      Write( lfn, *) 'TARGETDIR    = ./'
+      Write( lfn, *) '$(LIBTARGET) : $(OBJS)'
+      Write( lfn, '(a,a, "$(AR) $(ARFLAGS) ../main/libcmaqlib.a $(OBJS)"/)' ) tab, tab
+      Write( lfn, *) 'include ../configure.wrf'
 
 ! build SUFFIXES record
       record = '.SUFFIXES:'
