@@ -624,6 +624,14 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
  echo "Module ${ModBiog};"                                         >> $Cfile
  echo                                                              >> $Cfile
 
+ if [ $build_mpas_cmaq=='true' ]
+ then
+    text="mio"
+    echo "// options are" $text                                       >> $Cfile
+    echo "Module ${ModMio};"                                      >> $Cfile
+    echo  
+ fi
+
  text="megan3"
  echo "// options are" $text                                       >> $Cfile
  echo "Module ${ModMegBiog};"                                         >> $Cfile
@@ -791,15 +799,19 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
 #    bld_flags="${bld_flags} -isam_cctm"
 # fi
 
-# if [ build_wrf_cmaq ]
-# then
-#   bld_flags="${bld_flags} -twoway"
-# fi
+ if [ $build_wrf_cmaq=='true' ]
+ then
+   bld_flags="${bld_flags} -twoway"
+ fi
 
-   echo "START Blder ___***____ $Blder $bld_flags $Cfile"
+ if [ $build_mpas_cmaq=='true' ]
+ then
+   bld_flags="${bld_flags} -mpascmaq"
+ fi
+
 #> Run BLDMAKE with source code in build directory
- $Blder $bld_flags $Cfile
-
+ $Blder $bld_flags $Cfile 
+ 
 #> Rename Makefile to specify compiler option and link back to Makefile
 #! This needs editing for two-way
    echo "START Makefile"
