@@ -222,7 +222,7 @@ build_wrf_cmaq=True                    #> uncomment to build WRF-CMAQ coupled mo
     MakeFileOnly=true   
 #   Modwrfcmaq = wrf_cmaq
     Modwrfcmaq=twoway
-    Modcoupler = unified_coupler
+    Modcoupler=unified_coupler
  fi
 
 #> If the MPAS-CMAQ coupled model is being built,
