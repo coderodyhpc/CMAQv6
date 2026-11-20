@@ -490,11 +490,12 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
  echo "lib_4       ioapi/lib;"                                     >> $Cfile
  echo                                                              >> $Cfile
 
-  if ( $?build_mpas_cmaq ) then
-    set text = "$quote$CPP_FLAGS $PAR $SENS $PIO $quote;"
+ if [ $ModAdv==build_mpas_cmaq ]
+ then
+    text="$quote$CPP_FLAGS $PAR $SENS $PIO $quote;"
  else
-    set text = "$quote$CPP_FLAGS $PAR $SENS $PIO $STX1 $STX2$quote;"
- endif
+    text="$quote$CPP_FLAGS $PAR $SENS $PIO $STX1 $STX2$quote;"
+ fi
  
  text="$quote$CPP_FLAGS $PAR $SENS $PIO $STX1 $STX2$quote;"
  echo "cpp_flags   $text"                                          >> $Cfile
