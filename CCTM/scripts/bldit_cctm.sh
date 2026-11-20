@@ -369,7 +369,6 @@ echo "SENS $SENS"
 
 #> Set locations for the include files of various modules
  ICL_PAR=$GlobInc/fixed/mpi
- ICL_CONST=$GlobInc/fixed/const
  ICL_FILES=$GlobInc/fixed/filenames
  ICL_EMCTL=$GlobInc/fixed/emctrl
 # ICL_PA=$GlobInc/procan/$PAOpt
