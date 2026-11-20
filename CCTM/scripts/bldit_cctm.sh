@@ -227,13 +227,13 @@ build_wrf_cmaq=True                    #> uncomment to build WRF-CMAQ coupled mo
 
 #> If the MPAS-CMAQ coupled model is being built,
 #> then just generate the Makefile. Don't compile.
- if [ $build_mpas_cmaq == 'true' ]
- then
-    MakeFileOnly=true
-    Modmpascmaq=mpas_cmaq
-#    Modcoupler=coupler
-    ModMio=mio
- fi
+# if [ $build_mpas_cmaq == 'true' ]
+# then
+#    MakeFileOnly=true
+#    Modmpascmaq=mpas_cmaq
+###    Modcoupler=coupler
+#    ModMio=mio
+# fi
 
 #> If parallel-io is selected, then make sure the multiprocessor
 #> option is also set.
@@ -490,12 +490,12 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
  echo "lib_4       ioapi/lib;"                                     >> $Cfile
  echo                                                              >> $Cfile
 
- if [ $ModAdv==build_mpas_cmaq ]
- then
-    text="$quote$CPP_FLAGS $PAR $SENS $PIO $quote;"
- else
-    text="$quote$CPP_FLAGS $PAR $SENS $PIO $STX1 $STX2$quote;"
- fi
+ #if [ $ModAdv==build_mpas_cmaq ]
+ #then
+ #   text="$quote$CPP_FLAGS $PAR $SENS $PIO $quote;"
+ #else
+ text="$quote$CPP_FLAGS $PAR $SENS $PIO $STX1 $STX2$quote;"
+ #fi
  
  text="$quote$CPP_FLAGS $PAR $SENS $PIO $STX1 $STX2$quote;"
  echo "cpp_flags   $text"                                          >> $Cfile
@@ -562,12 +562,12 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
     echo                                                           >> $Cfile
  fi
 
- if [ $build_mpas_cmaq=='true' ]
- then
-    echo "// option set for MPAS-CMAQ coupled model"               >> $Cfile
-    echo "Module ${Modmpascmaq};"                                  >> $Cfile
-    echo                                                           >> $Cfile
- fi
+ #if [ $build_mpas_cmaq=='true' ]
+ #then
+ #   echo "// option set for MPAS-CMAQ coupled model"               >> $Cfile
+ #   echo "Module ${Modmpascmaq};"                                  >> $Cfile
+ #   echo                                                           >> $Cfile
+ #fi
  
  text="driver"
  echo "// options are" $text                                       >> $Cfile
@@ -624,13 +624,13 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
  echo "Module ${ModBiog};"                                         >> $Cfile
  echo                                                              >> $Cfile
 
- if [ $build_mpas_cmaq=='true' ]
- then
-    text="mio"
-    echo "// options are" $text                                       >> $Cfile
-    echo "Module ${ModMio};"                                      >> $Cfile
-    echo  
- fi
+ #if [ $build_mpas_cmaq=='true' ]
+ #then
+ #   text="mio"
+ #   echo "// options are" $text                                       >> $Cfile
+ #   echo "Module ${ModMio};"                                      >> $Cfile
+ #   echo  
+ #fi
 
  text="megan3"
  echo "// options are" $text                                       >> $Cfile
@@ -804,10 +804,10 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
    bld_flags="${bld_flags} -twoway"
  fi
 
- if [ $build_mpas_cmaq=='true' ]
- then
-   bld_flags="${bld_flags} -mpascmaq"
- fi
+ #if [ $build_mpas_cmaq=='true' ]
+ #then
+ #  bld_flags="${bld_flags} -mpascmaq"
+ #fi
 
 #> Run BLDMAKE with source code in build directory
  $Blder $bld_flags $Cfile 
