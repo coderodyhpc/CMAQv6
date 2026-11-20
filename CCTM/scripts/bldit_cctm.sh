@@ -272,13 +272,10 @@ build_wrf_cmaq=True                    #> uncomment to build WRF-CMAQ coupled mo
     LIB3="${mpi_lib} ${extra_lib}"
     echo " LIB2 $LIB2 "
     echo " LIB3 $LIB3 "
-    Str1=("// Parallel / Include message passing definitions")
-    Str2=("include SUBST_MPI mpif.h;")
+#    Str1=("// Parallel / Include message passing definitions")
+#    Str2=("include SUBST_MPI mpif.h;")
     # Distribute Environment to different machines if not done automatically
     # This is new but I'm ignoring it for the time being
-#    if ( $?DistrEnv ) then
-#      set PAR = ($PAR -Dcluster)
-#    endif
  else
     #Serial system configuration
     echo "   Not Parallel; set Serial (no-op) flags"
@@ -292,13 +289,13 @@ build_wrf_cmaq=True                    #> uncomment to build WRF-CMAQ coupled mo
     Popt=NOOP
     seL=sef90_noop
     LIB2="${ioapi_lib} ${extra_lib}"
-    Str1 =
-    Str2 =
+#    Str1 =
+#    Str2 =
  fi
 
 echo "End Multiprocessing"
 #> if DDM-3D is set, add the pre-processor flag for it.
- if [ DDM3D_CCTM ]
+ if [ DDM3D_CCTM == 'true' ]
  then
     SENS=( -Dsens )
  else
@@ -493,6 +490,13 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
  echo                                                              >> $Cfile
  echo "lib_4       ioapi/lib;"                                     >> $Cfile
  echo                                                              >> $Cfile
+
+  if ( $?build_mpas_cmaq ) then
+    set text = "$quote$CPP_FLAGS $PAR $SENS $PIO $quote;"
+ else
+    set text = "$quote$CPP_FLAGS $PAR $SENS $PIO $STX1 $STX2$quote;"
+ endif
+ 
  text="$quote$CPP_FLAGS $PAR $SENS $PIO $STX1 $STX2$quote;"
  echo "cpp_flags   $text"                                          >> $Cfile
  echo                                                              >> $Cfile
@@ -550,13 +554,21 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
  fi
  echo                                                              >> $Cfile
 
-# if [ build_wrf_cmaq ]
-# then
-#    echo "// option set for WRF-CMAQ twoway"                       >> $Cfile
-#    echo "Module ${ModTwoway};"                                    >> $Cfile
-#    echo                                                           >> $Cfile
-# fi
+ if [ $build_wrf_cmaq=='true' ]
+ then
+    echo "// option set for WRF-CMAQ coupled model"                >> $Cfile
+    echo "Module ${Modwrfcmaq};"                                   >> $Cfile
+    echo "Module ${Modcoupler};"                                   >> $Cfile
+    echo                                                           >> $Cfile
+ fi
 
+ if [ $build_mpas_cmaq=='true' ]
+ then
+    echo "// option set for MPAS-CMAQ coupled model"               >> $Cfile
+    echo "Module ${Modmpascmaq};"                                  >> $Cfile
+    echo                                                           >> $Cfile
+ fi
+ 
  text="driver"
  echo "// options are" $text                                       >> $Cfile
  echo "Module driver;"                                             >> $Cfile
