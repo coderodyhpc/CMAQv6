@@ -59,11 +59,14 @@ ParOpt=true             #> uncomment to build a multiple processor (MPI) executa
 #ISAM_CCTM=True                        #> uncomment to compile CCTM with ISAM activated
                                        #>   comment out to use standard process
 
-#DDM3D_CCTM=True                       #> uncomment to compile CCTM with DD3D activated
+#DDM3D_CCTM=True                       #> uncomment to compile CCTM with DDM-3D activated
                                        #>   comment out to use standard process
-#> Two-way WRF-CMAQ
-#build_twoway=True                     #> uncomment to build WRF-CMAQ twoway;
-                                       #>   comment out for off-line chemistry
+#> WRF-CMAQ coupled model 
+build_wrf_cmaq=True                    #> uncomment to build WRF-CMAQ coupled model; 
+                                       #>   comment out for off-line chemistry 
+
+#> MPAS-CMAQ coupled model
+#build_mpas_cmaq=True                   #> uncomment to build MPAS-CMAQ coupled model; 
 
 #> Potential vorticity free-troposphere O3 scaling
 #potvortO3=True
@@ -211,14 +214,26 @@ ParOpt=true             #> uncomment to build a multiple processor (MPI) executa
 ###    exit 1
  fi
 
-#> If the two-way, coupled WRF-CMAQ model is being built,
+
+#> If the WRF-CMAQ coupled model is being built,
 #> then just generate the Makefile. Don't compile.
-# if [ build_wrf_cmaq ]
-# then
-#    MakeFileOnly=true
-#    Modwrfcmaq=twoway
-#    Modcoupler=unified_coupler
-# fi
+ if [ $build_wrf_cmaq == 'true' ]
+ then
+    MakeFileOnly=true   
+#   Modwrfcmaq = wrf_cmaq
+    Modwrfcmaq=twoway
+    Modcoupler = unified_coupler
+ fi
+
+#> If the MPAS-CMAQ coupled model is being built,
+#> then just generate the Makefile. Don't compile.
+ if [ $build_mpas_cmaq == 'true' ]
+ then
+    MakeFileOnly=true
+    Modmpascmaq=mpas_cmaq
+#    Modcoupler=coupler
+    ModMio=mio
+ fi
 
 #> If parallel-io is selected, then make sure the multiprocessor
 #> option is also set.
