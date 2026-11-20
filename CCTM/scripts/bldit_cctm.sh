@@ -283,8 +283,8 @@ ParOpt=true             #> uncomment to build a multiple processor (MPI) executa
 
 echo "End Multiprocessing"
 #> if DDM-3D is set, add the pre-processor flag for it.
- if [ DDM3D_CCTM ]
- then
+if [ DDM3D_CCTM == 'true' ]
+then
     SENS=( -Dsens )
  else
     SENS=""
@@ -357,7 +357,6 @@ echo "SENS $SENS"
 
 #> Set locations for the include files of various modules
  ICL_PAR=$GlobInc/fixed/mpi
- ICL_CONST=$GlobInc/fixed/const
  ICL_FILES=$GlobInc/fixed/filenames
  ICL_EMCTL=$GlobInc/fixed/emctrl
 # ICL_PA=$GlobInc/procan/$PAOpt
@@ -754,10 +753,10 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
                                               # $Cfile = ${CFG}.bld
  fi
 
- if [ Debug_CCTM ]
- then
-    bld_flags="${bld_flags} -debug_cctm"
- fi
+# if [ Debug_CCTM ]
+# then
+#    bld_flags="${bld_flags} -debug_cctm"
+# fi
 
 # if [ ISAM_CCTM ]
 # then
