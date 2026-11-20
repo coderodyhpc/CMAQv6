@@ -776,6 +776,7 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
  then   # Do not compile the Model
     bld_flags="${bld_flags} -makefo"
  fi
+   echo "Bld Flags ___ 1 ___ $bld_flags"
 
  if [ CopySrc ]
  then
@@ -788,6 +789,8 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
                                               # version-controlled git repo
                                               # $Cfile = ${CFG}.bld
  fi
+
+   echo "Bld Flags ___ 2 ___ $bld_flags"
 
  if [ Debug_CCTM ]
  then
@@ -803,6 +806,8 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
  then
    bld_flags="${bld_flags} -twoway"
  fi
+
+   echo "Bld Flags ___ 3 ___ $bld_flags"
 
  #if [ $build_mpas_cmaq=='true' ]
  #then
