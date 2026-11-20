@@ -792,10 +792,10 @@ Cfile=${Bld}/${CFG}.bld      # Config Filename
 
    echo "Bld Flags ___ 2 ___ $bld_flags"
 
- if [ Debug_CCTM ]
- then
-    bld_flags="${bld_flags} -debug_cctm"
- fi
+# if [ Debug_CCTM ]
+# then
+#    bld_flags="${bld_flags} -debug_cctm"
+# fi
 
 # if [ ISAM_CCTM ]
 # then
