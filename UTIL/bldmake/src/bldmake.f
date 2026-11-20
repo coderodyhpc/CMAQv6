@@ -169,25 +169,25 @@
 
  !      write( *,* ) "n, argv: ", n, argv
 
-        If ( argv( 1:1 ) .Ne. '-' ) Then
-          Call help_msg('Invalid arguments on command line:' // Trim( argv ) )
-          Stop
-        End If
+        !If ( argv( 1:1 ) .Ne. '-' ) Then
+        !  Call help_msg('Invalid arguments on command line:' // Trim( argv ) )
+        !  Stop
+        !End If
 
         Call ucase( argv )
 
-        If ( argv .Eq. '-HELP' ) Then
-          Call help_msg('Help option:' // Trim( argv ) )
-          Call cfgHelp( ); Stop
-        End If
+        !If ( argv .Eq. '-HELP' ) Then
+        !  Call help_msg('Help option:' // Trim( argv ) )
+        !  Call cfgHelp( ); Stop
+        !End If
 
-        If ( argv .Eq. '-MAKEFO' ) Then     ! Make file only
-          makefo = .True.; Cycle
-        End If
+        !If ( argv .Eq. '-MAKEFO' ) Then     ! Make file only
+        !  makefo = .True.; Cycle
+        !End If
 
-        If ( argv .Eq. '-SERIAL' ) Then     ! compile for serial execution
-          serial = .True.; Cycle
-        End If
+        !If ( argv .Eq. '-SERIAL' ) Then     ! compile for serial execution
+        !  serial = .True.; Cycle
+        !End If
 
         !model_configuration = offline
         !If ( argv .Eq. '-TWOWAY' ) Then     ! WRF-CMAQ coupled model
@@ -198,35 +198,35 @@
         !   End If
         !End If
 
-        If ( argv .Eq. '-MPASCMAQ' ) Then     ! MPAS-CMAQ coupled model
-           If ( .Not. serial ) Then
-              model_configuration = mpas_cmaq; Cycle
-           Else
-              stop ' MPAS-CMAQ not available for Serial execution'
-           End If
-        End If
+        !If ( argv .Eq. '-MPASCMAQ' ) Then     ! MPAS-CMAQ coupled model
+        !   If ( .Not. serial ) Then
+        !      model_configuration = mpas_cmaq; Cycle
+        !   Else
+        !      stop ' MPAS-CMAQ not available for Serial execution'
+        !   End If
+        !End If
 
-        If ( argv .Eq. '-GIT_LOCAL' ) Then  ! do not copy source files to BLD directory
-          git_local = .True.; Cycle
-        End If
+        !If ( argv .Eq. '-GIT_LOCAL' ) Then  ! do not copy source files to BLD directory
+        !  git_local = .True.; Cycle
+        !End If
 
-        If ( argv .Eq. '-DEBUG' ) Then
-          debug = .True.; Cycle
-        End If
+        !If ( argv .Eq. '-DEBUG' ) Then
+        !  debug = .True.; Cycle
+        !End If
 
-        If ( argv .Eq. '-DEBUG_CCTM' ) Then
-          debug_cctm = .True.; Cycle
-        End If
+        !If ( argv .Eq. '-DEBUG_CCTM' ) Then
+        !  debug_cctm = .True.; Cycle
+        !End If
 
-        If ( argv .Eq. '-ISAM_CCTM' ) Then
-          isam_cctm = .True.; Cycle
-        End If
+        !If ( argv .Eq. '-ISAM_CCTM' ) Then
+        !  isam_cctm = .True.; Cycle
+        !End If
 
-        If ( argv .Eq. '-VERBOSE' ) Then
-          verbose = .True.; Cycle
-        End If
+        !If ( argv .Eq. '-VERBOSE' ) Then
+        !  verbose = .True.; Cycle
+        !End If
 
-        Call help_msg( 'Invalid arguments [' // Trim(argv) // '] on command line' )
+        !Call help_msg( 'Invalid arguments [' // Trim(argv) // '] on command line' )
 
       End Do
 
