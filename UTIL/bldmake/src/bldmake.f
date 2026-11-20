@@ -75,13 +75,13 @@
       Call git_export( status )
 
 ! create Makefile
-      if (model_configuration == wrf_cmaq) then
-         Open ( unit=lfn, file='Makefile.twoway', iostat=status )
-      else if (model_configuration == mpas_cmaq) then
-         Open ( unit=lfn, file='Makefile.mpas_cmaq', iostat=status )
-      else
-         Open ( unit=lfn, file='Makefile', iostat=status )
-      end if
+!      if (model_configuration == wrf_cmaq) then
+      Open ( unit=lfn, file='Makefile.twoway', iostat=status )
+!      else if (model_configuration == mpas_cmaq) then
+!         Open ( unit=lfn, file='Makefile.mpas_cmaq', iostat=status )
+!      else
+!         Open ( unit=lfn, file='Makefile', iostat=status )
+!      end if
       If ( status .ne. 0 ) Call error_msg( 'Cannot create FILE [Makefile]' )
 
       Call makefile( lfn, cfgFile )
