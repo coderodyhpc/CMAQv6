@@ -6,7 +6,7 @@
 
 #> Source the config.cmaq file to set the build environment
  cd ../..
- source ./config_cmaq.sh
+ source ./config_wrfcmaq.sh
 
  set echo
 
