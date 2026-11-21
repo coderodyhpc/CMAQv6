@@ -610,9 +610,6 @@
       pathStr = ' '
       hasPaths = .False.
 
-      write (*,*) "???????????????????????????????????"
-      write (*,*) "WRITE-INC ", model_configuration
-
       if ((model_configuration == wrf_cmaq) .or. 
      &    (model_configuration == mpas_cmaq)) then
         n_M = n_Mac - 1
@@ -687,7 +684,8 @@
 
 ! write include lines
       Write( lfn, '(/" INCLUDES = ",$)' )
-      Write( lfn, '(a)' )  path, n_includes
+      Write( lfn, '(a)' )  path
+      Write( lfn, '(i)' )  n_includes
 
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !  include(n)%name  include(n)%path
