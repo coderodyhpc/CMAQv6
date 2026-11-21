@@ -685,7 +685,7 @@
 ! write include lines
       Write( lfn, '(/" INCLUDES = ",$)' )
       Write( lfn, '(a)' )  path
-      Write( lfn, '(i)' )  n_includes
+      Write( lfn, '(a)' )  pathStr( 1 )
 
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !  include(n)%name  include(n)%path
