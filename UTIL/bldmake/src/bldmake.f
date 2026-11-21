@@ -617,8 +617,8 @@
         write (*,*) "|||||||||||||||||||||||||||||||||||||||||||||||||||||"
         write (*,*) "|||||||||||||||||||||||||||||||||||||||||||||||||||||"
         write (*,*) "writeINC ", model_configuration
-        Write( lfn, '|||||||||||||||||||||||||||||||||||||||||||||||||||||' )
-        Write( lfn, model_configuration )
+        !Write( lfn, '|||||||||||||||||||||||||||||||||||||||||||||||||||||' )
+        !Write( lfn, model_configuration )
 ! find path strings
         Do n = 1, n_includes
           Do i = 1, n_M
