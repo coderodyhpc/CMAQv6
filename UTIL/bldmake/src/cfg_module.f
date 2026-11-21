@@ -1077,11 +1077,13 @@
       If ( global ) Then
         Do n = 1, n_modules
           Do i = 1, module(n)%nfiles
+            write (*,*) "MOD ", n, i
             If ( module(n)%file(i)%global_module ) Then
               nfiles = nfiles + 1
               filename( nfiles ) = module(n)%file(i)%name
               modname( nfiles )  = module(n)%file(i)%mod_name
               usename( nfiles )  = module(n)%file(i)%uses
+              write (*,*) "LOOP ", filename( nfiles ), modname( nfiles ), usename( nfiles )
             End If
 
           End Do
