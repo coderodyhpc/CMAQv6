@@ -687,7 +687,7 @@
 
 ! write include lines
       Write( lfn, '(/" INCLUDES = ",$)' )
-      Write( lfn, '(a)' )  path(1)
+      Write( lfn, '(a)' )  path
       Write( lfn, * ) 'MODEL_CONFIGURATION $(model_configuration) $(path)'
 
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
