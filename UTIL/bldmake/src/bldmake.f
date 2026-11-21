@@ -613,7 +613,12 @@
       if ((model_configuration == wrf_cmaq) .or. 
      &    (model_configuration == mpas_cmaq)) then
         n_M = n_Mac - 1
-
+        write (*,*) "|||||||||||||||||||||||||||||||||||||||||||||||||||||"
+        write (*,*) "|||||||||||||||||||||||||||||||||||||||||||||||||||||"
+        write (*,*) "|||||||||||||||||||||||||||||||||||||||||||||||||||||"
+        write (*,*) "writeINC ", model_configuration
+        Write( lfn, '|||||||||||||||||||||||||||||||||||||||||||||||||||||' )
+        Write( lfn, model_configuration )
 ! find path strings
         Do n = 1, n_includes
           Do i = 1, n_M
