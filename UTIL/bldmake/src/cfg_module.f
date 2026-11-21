@@ -1069,6 +1069,8 @@
       Integer :: msort
       Integer :: nmodfiles
 
+      write (*,*) "ORDERFILES "
+      write (*,*) "NMODULES ", n_modules
 ! Build list of files to sort
       nfiles = 0
 ! If global, build list from all modules
