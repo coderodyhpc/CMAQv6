@@ -617,8 +617,6 @@
         write (*,*) "|||||||||||||||||||||||||||||||||||||||||||||||||||||"
         write (*,*) "|||||||||||||||||||||||||||||||||||||||||||||||||||||"
         write (*,*) "writeINC ", model_configuration
-        !Write( lfn, '|||||||||||||||||||||||||||||||||||||||||||||||||||||' )
-        !Write( lfn, model_configuration )
 ! find path strings
         Do n = 1, n_includes
           Do i = 1, n_M
@@ -686,7 +684,7 @@
 
 ! write include lines
       Write( lfn, '(/" INCLUDES = ",$)' )
-      Write( lfn, '("____________")' )
+      Write( lfn, '(/"____________",  model_configuration)' )
 
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !  include(n)%name  include(n)%path
