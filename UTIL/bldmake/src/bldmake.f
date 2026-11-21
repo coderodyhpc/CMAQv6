@@ -686,6 +686,7 @@
 
 ! write include lines
       Write( lfn, '(/" INCLUDES = ",$)' )
+      Write( lfn, '____________' )
 
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !  include(n)%name  include(n)%path
