@@ -687,8 +687,7 @@
 
 ! write include lines
       Write( lfn, '(/" INCLUDES = ",$)' )
-      Write( lfn, '(a)' )  path
-      Write( lfn, * ) 'MODEL_CONFIGURATION $(model_configuration) $(path)'
+      Write( lfn, '(a)' )  path, n_includes
 
 !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 !  include(n)%name  include(n)%path
@@ -781,6 +780,8 @@
       Call orderfiles( module(1), .True., nfiles, filename )
       modname = 'GLOBAL_MODULES'
 
+      Write( lfn, '(a)' ) "GLOBAL MODULES - GLOBAL MODULES - GLOBAL MODULES"
+
       If ( nfiles .Gt. 0 ) Then
         tobjStr = Trim( modname )
         Write( lfn, '(//a," =",$)' ) Trim( tobjStr )
@@ -806,7 +807,10 @@
       modname1 = module(1)%name; Call ucase( modname1 )
       modname2 = module(2)%name; Call ucase( modname2 )
       
+      Write( lfn, '(a)' ) "GLOBAL MODULES - GLOBAL MODULES - GLOBAL MODULES"
+
       If ( Trim( modname1 ) .Eq. 'STENEX' .And. Trim( modname2 ) .Eq. 'PARIO' ) Then
+        Write( lfn, '(a)' ) "First CONDITION"
         Do n = 1, n_modules
           Call orderfiles( module(n), .False., nfiles, filename )
           If ( nfiles .Gt. 0 ) Then
@@ -829,6 +833,7 @@
         End Do
 
       Else If ( Trim( modname1 ) .Eq. 'STENEX' .And. Trim( modname2 ) .Ne. 'PARIO' ) Then
+        Write( lfn, '(a)' ) "Seconf CONDITION"
         Do n = 1, n_modules
           Call orderfiles( module(n), .False., nfiles, filename )
           If ( nfiles .Gt. 0 ) Then
@@ -874,6 +879,7 @@
         End Do
 
       Else If ( Trim( modname1 ) .Ne. 'STENEX' .And. Trim( modname2 ) .Ne. 'PARIO' ) Then
+        Write( lfn, '(a)' ) "Third CONDITION"
         Do n = 1, n_modules
           Call orderfiles( module(n), .False., nfiles, filename )
           If ( nfiles .Gt. 0 ) Then
