@@ -1,14 +1,42 @@
-#!/bin/bash
-#> Set Compiler Identity by User Input: Options -> intel | pgi | gcc
+#!/usr/bin/env bash
+#
+# ======================= CCTMv6.X Build Script =========================
+# Usage: bldit_cctm.sh <compiler> [<version>] &> bldit.cctm.log
+# Requirements: I/O API & netCDF libraries, a Fortran compiler,
+#               and MPI for multiprocessor computing
+#
+# To report problems or request help with this script/program:
+#             http://www.cmascenter.org
+# =======================================================================
+set -euo pipefail
+
+#> Manual set-up
  export compiler=gcc
  export Vrsn=15.2
  echo "Compiler is set to $compiler"
 
-#> Source the config.cmaq file to set the build environment
- cd ../..
- source ./config_cmaq.sh
+#> Source the config file to set the build environment
+#  (config_cmaq.sh is the Bash port of config_cmaq.csh)
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+cd "${script_dir}/../.."
 
- set echo
+set +u                      # the config file may reference unset variables
+source ./config_cmaq.sh
+set -u
+
+#> Variables the config file must provide
+for v in CMAQ_HOME CMAQ_REPO CMAQ_LIB compilerString \
+         myFC myCC myFSTD myDBG myFFLAGS myFRFLAGS myCFLAGS myLINK_FLAG \
+         ioapi_lib netcdf_lib netcdff_lib extra_lib; do
+    if [[ -z ${!v+x} ]]; then
+        echo "*** ${v} is not set by config_cmaq.sh" >&2
+        exit 1
+    fi
+done
+# bldit_bldmake.sh and bldit_mech.* read these from the environment
+export compilerString CMAQ_HOME CMAQ_REPO myFC myFFLAGS
+
+set -x                      # csh: "set echo"
 
 # =======================================================================
 #> Begin User Input Section
