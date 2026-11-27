@@ -24,18 +24,6 @@ set +u                      # the config file may reference unset variables
 source ./config_cmaq.sh
 set -u
 
-#> Variables the config file must provide
-for v in CMAQ_HOME CMAQ_REPO CMAQ_LIB compilerString \
-         myFC myCC myFSTD myDBG myFFLAGS myFRFLAGS myCFLAGS myLINK_FLAG \
-         ioapi_lib netcdf_lib netcdff_lib extra_lib; do
-    if [[ -z ${!v+x} ]]; then
-        echo "*** ${v} is not set by config_cmaq.sh" >&2
-        exit 1
-    fi
-done
-# bldit_bldmake.sh and bldit_mech.* read these from the environment
-export compilerString CMAQ_HOME CMAQ_REPO myFC myFFLAGS
-
 set -x                      # csh: "set echo"
 
 # =======================================================================
